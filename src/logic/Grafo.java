@@ -7,9 +7,14 @@ public class Grafo {
     int[][] matriz;
     boolean regular;
     boolean completo;
+    ArrayList verticesg = new ArrayList();
+    ArrayList vgvisitados = new ArrayList();
 
     public Grafo(int n) {
         this.matriz = new int[n][n];
+        for (int i = 0; i < this.matriz.length; i++) {
+            verticesg.add(i);
+        }
     }
     
     public void inserirLigacao(int v1, int v2){
@@ -27,13 +32,21 @@ public class Grafo {
         }
     }
     
-    public String getAdjacência(int v){
-        String list = "";
+    public ArrayList getAdjacência(int v){
+        ArrayList listint = new ArrayList();
         int indexv = v-1;
         for (int i = 0; i < matriz[indexv].length; i++) {
             if (matriz[indexv][i] == 1) {
-                list += (i+1)+"; ";
+                listint.add(i + 1);
             }
+        }
+        return listint;
+    }
+    
+    public String getAdjacênciaToString(ArrayList lista){
+        String list = "";
+        for (int i = 0; i < lista.size(); i++) {
+            list += lista.get(i) + "; ";
         }
         return list;
     }
@@ -76,19 +89,51 @@ public class Grafo {
         return completo;
     }
     
-//     public void buscaProfundidade(int v){
-//        ArrayList pilha = new ArrayList();
-//        ArrayList visitados = new ArrayList();
-//        visitados.add(v);
-//        pilha.add(v);
-//        while(pilha.isEmpty() == false){
-//            //while(this.getAdjacência(v)){
-//                
-//            //}
-//        } 
-//        
-//    } 
-    
+    public ArrayList buscaProfundidade(int v){
+        int vertice = v -1;
+        ArrayList pilha = new ArrayList();
+        ArrayList visitados = new ArrayList();
+        visitados.add(vertice);
+        pilha.add(vertice);
+        while(pilha.isEmpty() == false){
+            boolean exist = false;
+            int vtopo = pilha.size() - 1;
+            ArrayList adjacentes = this.getAdjacência(vtopo);
+            for (int i = 0; i < adjacentes.size(); i++) {
+                    if (visitados.contains(adjacentes.get(i)) == false) {
+                        exist = true;
+                    }
+                    if (exist == true) {
+                        visitados.add(adjacentes.get(i));
+                        pilha.add(adjacentes.get(i));
+                        i = adjacentes.size() + 1;
+                    }
+                
+            }pilha.remove(pilha.get(pilha.size() - 1));
+        }
+        vgvisitados = visitados;
+        return visitados;
+    } 
+     
+    public boolean ehconexo(){
+        boolean conexo = false;
+        int contador = 0;
+         
+        for (int i = 0; i < verticesg.size(); i++) {
+            if (vgvisitados.contains(verticesg.get(i)) == false) {
+                int vertice = (int) verticesg.get(i);
+                buscaProfundidade(vertice);
+                contador++;
+            }
+        }
+        
+        if (contador == 1) {
+            conexo = true;
+        }else{
+            conexo = false;
+        }
+        return conexo;
+    }
     
     public String printG(){
         String list = "";

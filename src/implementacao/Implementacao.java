@@ -27,7 +27,7 @@ public class Implementacao {
         System.out.println("Informe o vertice para verificar adjacências: ");
         int v = sc.nextInt();
         System.out.println("Adjacentes ao vértice " + v + ": ");
-        System.out.println(g.getAdjacência(v));
+        System.out.println(g.getAdjacênciaToString(g.getAdjacência(v)));
         System.out.println(g.ehRegular());
         System.out.println(g.ehCompleto());
         
