@@ -7,6 +7,7 @@ public class Grafo {
     int[][] matriz;
     boolean regular;
     boolean completo;
+    int verticew;
     ArrayList verticesg = new ArrayList();
     ArrayList vgvisitados = new ArrayList();
 
@@ -43,13 +44,13 @@ public class Grafo {
         return listint;
     }
     
-    public String getAdjacênciaToString(ArrayList lista){
-        String list = "";
-        for (int i = 0; i < lista.size(); i++) {
-            list += lista.get(i) + "; ";
-        }
-        return list;
-    }
+//    public String getAdjacênciaToString(ArrayList lista){
+//        String list = "";
+//        for (int i = 0; i < lista.size(); i++) {
+//            list += lista.get(i) + "; ";
+//        }
+//        return list;
+//    }
     
     public boolean ehRegular(){
         regular = true;
@@ -96,25 +97,30 @@ public class Grafo {
         visitados.add(vertice);
         pilha.add(vertice);
         while(pilha.isEmpty() == false){
-            boolean exist = false;
-            int vtopo = pilha.size() - 1;
-            ArrayList adjacentes = this.getAdjacência(vtopo);
-            for (int i = 0; i < adjacentes.size(); i++) {
-                    if (visitados.contains(adjacentes.get(i)) == false) {
-                        exist = true;
-                    }
-                    if (exist == true) {
-                        visitados.add(adjacentes.get(i));
-                        pilha.add(adjacentes.get(i));
-                        i = adjacentes.size() + 1;
-                    }
-                
+            int vtopo = pilha.size();
+            while(this.verificarV(visitados, vtopo)){
+                visitados.add(verticew);
+                pilha.add(verticew);
+            
             }pilha.remove(pilha.get(pilha.size() - 1));
-        }
-        vgvisitados = visitados;
-        return visitados;
+        }return visitados;
     } 
-     
+    
+    public boolean verificarV(ArrayList visitados, int vtopo){
+        boolean exist = false;
+        int cont = 1;
+        ArrayList adjacentes = this.getAdjacência(vtopo);
+        System.out.println(adjacentes);
+            for (int i = 0; i < adjacentes.size(); i++) {
+                if (visitados.contains(adjacentes.get(i)) == false) {
+                    verticew = (int) adjacentes.get(i);
+                    exist = true;
+                    i = adjacentes.size();
+                }
+            }
+        return exist;
+    }
+    
     public boolean ehconexo(){
         boolean conexo = false;
         int contador = 0;
