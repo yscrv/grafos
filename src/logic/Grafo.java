@@ -109,7 +109,6 @@ public class Grafo {
         return visitados;
     } 
     
-    
     public boolean verificarV(ArrayList visitados, int vtopo){
         boolean exist = false;
         ArrayList adjacentes = this.getAdjacência(vtopo);
