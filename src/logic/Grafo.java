@@ -38,7 +38,7 @@ public class Grafo {
         int indexv = v-1;
         for (int i = 0; i < matriz[indexv].length; i++) {
             if (matriz[indexv][i] == 1) {
-                listint.add(i + 1);
+                listint.add(i);
             }
         }
         return listint;
@@ -100,19 +100,24 @@ public class Grafo {
             int vtopo = pilha.size();
             while(this.verificarV(visitados, vtopo)){
                 visitados.add(verticew);
+                vgvisitados.add(verticew);
                 pilha.add(verticew);
             
             }pilha.remove(pilha.get(pilha.size() - 1));
-        }return visitados;
+        }
+        
+        return visitados;
     } 
+    
     
     public boolean verificarV(ArrayList visitados, int vtopo){
         boolean exist = false;
-        int cont = 1;
         ArrayList adjacentes = this.getAdjacência(vtopo);
-        System.out.println(adjacentes);
+        
             for (int i = 0; i < adjacentes.size(); i++) {
+                
                 if (visitados.contains(adjacentes.get(i)) == false) {
+                    
                     verticew = (int) adjacentes.get(i);
                     exist = true;
                     i = adjacentes.size();
@@ -135,8 +140,6 @@ public class Grafo {
         
         if (contador == 1) {
             conexo = true;
-        }else{
-            conexo = false;
         }
         return conexo;
     }

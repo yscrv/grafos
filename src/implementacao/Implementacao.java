@@ -34,7 +34,7 @@ public class Implementacao {
         System.out.println(g.ehRegular());
         System.out.println(g.ehCompleto());
         System.out.println(g.buscaProfundidade(1));
-        //System.out.println(g.ehconexo());
+        System.out.println(g.ehconexo());
         
         
         
