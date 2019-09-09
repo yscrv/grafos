@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Grafo {
     int[][] matriz;
-    boolean regular;
-    boolean completo;
     int verticew;
+    boolean regular,
+            completo;
+    
     ArrayList verticesg = new ArrayList();
     ArrayList vgvisitados = new ArrayList();
 
@@ -37,27 +38,19 @@ public class Grafo {
         ArrayList listint = new ArrayList();
         int indexv = v-1;
         for (int i = 0; i < matriz[indexv].length; i++) {
-            if (matriz[indexv][i] == 1) {
+            if (matriz[indexv][i] != 0) {
                 listint.add(i);
             }
         }
         return listint;
     }
     
-//    public String getAdjacênciaToString(ArrayList lista){
-//        String list = "";
-//        for (int i = 0; i < lista.size(); i++) {
-//            list += lista.get(i) + "; ";
-//        }
-//        return list;
-//    }
-    
     public boolean ehRegular(){
         regular = true;
         int[] qvertices = new int[matriz.length];
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
-                if (matriz[i][j] == 1 ) {
+                if (matriz[i][j] != 0 ) {
                     qvertices[i] += 1;
                 }
             }
@@ -77,7 +70,7 @@ public class Grafo {
         int[] qvertices = new int[matriz.length];
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
-                if (matriz[i][j] == 1 ) {
+                if (matriz[i][j] != 0 ) {
                     qvertices[i] += 1;
                 }
             }
@@ -109,6 +102,7 @@ public class Grafo {
         return visitados;
     } 
     
+    //verificar se existe vertices adjacentes nãp visitados
     public boolean verificarV(ArrayList visitados, int vtopo){
         boolean exist = false;
         ArrayList adjacentes = this.getAdjacência(vtopo);
@@ -158,6 +152,13 @@ public class Grafo {
     public int[][] getMatriz() {
         return matriz;
     }
-    
+
+    //    public String getAdjacênciaToString(ArrayList lista){
+//        String list = "";
+//        for (int i = 0; i < lista.size(); i++) {
+//            list += lista.get(i) + "; ";
+//        }
+//        return list;
+//    }
     
 }
