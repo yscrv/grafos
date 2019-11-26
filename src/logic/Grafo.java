@@ -35,7 +35,7 @@ public class Grafo {
     }
     
     public ArrayList getAdjacência(int v){
-        ArrayList listint = new ArrayList();
+        ArrayList<Integer> listint = new ArrayList<>();
         int indexv = v-1;
         for (int i = 0; i < matriz[indexv].length; i++) {
             if (matriz[indexv][i] != 0) {
@@ -153,12 +153,22 @@ public class Grafo {
         return matriz;
     }
 
-    //    public String getAdjacênciaToString(ArrayList lista){
-//        String list = "";
-//        for (int i = 0; i < lista.size(); i++) {
-//            list += lista.get(i) + "; ";
-//        }
-//        return list;
-//    }
+    public int[] getAdjacênciaVetor(int vertice){
+        int[] listint = new int[matriz.length];
+        
+        for (int i = 0; i < matriz[vertice].length; i++) {
+            if (matriz[vertice][i] != 0) {
+                listint[i] = matriz[vertice][i];
+            }
+        }
+        return listint;
+    }
+    public String getAdjacênciaToString(ArrayList lista){
+        String list = "";
+        for (int i = 0; i < lista.size(); i++) {
+            list += lista.get(i) + "; ";
+        }
+        return list;
+    }
     
 }
