@@ -46,7 +46,7 @@ public class Grafovalorado extends Grafo{
                 matrizDijkstra[i][0] = 0; //se pertence ao conjunto S terá valor 1, se não, terá valor 0
                 matrizDijkstra[i][1] = Integer.MAX_VALUE - 1;
                 System.out.println(matrizDijkstra[i][1]);                
-//matrizDijkstra[i][2] é o caminho;
+                //matrizDijkstra[i][2] é o caminho;
             }
         }
         
@@ -87,10 +87,13 @@ public class Grafovalorado extends Grafo{
             }
             
         }
-        
+        System.out.println("vertice / S / dist / path");
         for (int i = 0; i < matrizDijkstra.length; i++) {
+            
+            System.out.print("vertice "+ (i + 1) + ": " );
             for (int j = 0; j < matrizDijkstra[i].length; j++) {
-                System.out.print(matrizDijkstra[i][j] + ", ");
+                
+                System.out.print( matrizDijkstra[i][j] + ", ");
             }
             System.out.println("");
         }
